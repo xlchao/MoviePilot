@@ -143,7 +143,7 @@ function install_backend_and_download_resources() {
     cp -a /plugins/* /app/app/plugins/
     # 更新站点资源
     INFO "→ 开始更新站点资源..."
-    if ! download_and_unzip "${GITHUB_PROXY}https://github.com/jxxghp/MoviePilot-Resources/archive/refs/heads/main.zip" "Resources"; then
+    if ! download_and_unzip "${GITHUB_PROXY}https://github.com/xlchao/MoviePilot-Resources/archive/refs/heads/main.zip" "Resources"; then
         cp -a /resources_bakcup/* /app/app/helper/
         rm -rf /resources_bakcup
         WARN "站点资源下载失败，继续使用旧的资源来启动..."
@@ -332,7 +332,7 @@ if [[ "${MOVIEPILOT_AUTO_UPDATE}" = "true" ]] || [[ "${MOVIEPILOT_AUTO_UPDATE}" 
             current_version=$(echo "${old_version}" | sed -rn "s/APP_VERSION\s*=\s*['\"](.*)['\"]/\1/gp")
             INFO "当前版本号：${current_version}"
             # 获取所有发布的版本列表，并筛选出以v2开头的版本号
-            releases=$(curl ${CURL_OPTIONS} "https://api.github.com/repos/jxxghp/MoviePilot/releases" ${CURL_HEADERS} | jq -r '.[].tag_name' | grep "^v2\.")
+            releases=$(curl ${CURL_OPTIONS} "https://api.github.com/repos/xlchao/MoviePilot/releases" ${CURL_HEADERS} | jq -r '.[].tag_name' | grep "^v2\.")
             if [ -z "$releases" ]; then
                 WARN "未找到任何v2后端版本，继续启动..."
             else
